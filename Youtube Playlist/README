@@ -1,0 +1,3 @@
+I started this as a way to make managing my private Youtube playlists easier and took it as an experience to also learn to interact with API's. This code contains functionality for downloading videos from a playlist as mp3 files, moving videos from one playlist to another, and removing all videos from a playlist. The code is currently packed together, but I'll probably spread it out as good coding practice and to increase readability.
+
+When setting up my API credentials, I found [this](https://help.aolonnetwork.com/hc/en-us/articles/218079623-How-to-Create-Your-YouTube-API-Credentials) page to greatly assist me in finally authenticating properly with my Youtube account.
