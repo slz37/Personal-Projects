@@ -228,7 +228,7 @@ if DOWNLOAD:
     print('Downloading...')
     download_videos(service)
 if TRANSFER:
-    print('Transfering...')
+    print('Transferring...')
     move_to_playlist(service)
 if DELETE:
     print('Deleting...')
