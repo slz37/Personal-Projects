@@ -158,6 +158,9 @@ def download_videos(service):
         if name in downloaded:
             print('File with name exists, skipping {}'.format(video[0]))
             continue
+        if video_name == 'Private video':
+            print('Skipping private video.')
+            continue
         else:
             with youtube_dl.YoutubeDL(yd_opts) as yd:
                 url = VIDEO_BASE_URL + video[1]
