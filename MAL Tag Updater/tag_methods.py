@@ -39,10 +39,13 @@ def get_studio(browser, string):
     '''
 
     #Get studios
-    studios = browser.find_element_by_css_selector("span[class=\"information studio author\"")
-    string += studios.text + ", "
-
-    return string
+    try:
+        studios = browser.find_element_by_css_selector("span[class=\"information studio author\"")
+        string += studios.text + ", "
+        return string
+    except:
+        print("No studios found.")
+        return string
 
 def get_genres(browser, url):
     '''
