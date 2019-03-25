@@ -1,0 +1,1 @@
+Updates user tags for anime in user's list on myanimelist.net Currently supports adding tags to all empty rows, removing all tags, filtering gennres for tags. User must supply username and password as input.
