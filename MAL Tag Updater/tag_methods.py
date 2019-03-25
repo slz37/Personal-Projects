@@ -87,6 +87,43 @@ def add_genres(browser, ID, string):
     tag.send_keys(string)
     browser.find_element_by_xpath("//input[@onclick=\"tag_add({},1)\"]".format(ID)).click()
 
+def update_tags(browser, urls, anime_list):
+    '''
+    Searches current tags and compares them to the
+    tags this code would normally set and matches
+    them.
+    '''
+
+    #Loop over all anime
+    for i in range(len(anime_list)):
+        #Get anime info
+        name = anime_list[i].text
+        url = urls[i].get_attribute("href")
+        ID = re.search(ID_PATTERN, url).group()
+        tags = browser.find_element_by_xpath("//*[@id=\"tagLinks{}\"]".format(ID)).text
+
+        print("Comparing tags for {}.".format(name))
+
+        string = get_genres(browser, url)
+
+        #Compare tags
+        if tags == string.lower():
+            print("Tags match, skipping.")
+            continue
+        else:
+            print("Tag mismatch, fixing.")
+
+            #Replace with new tags
+            time.sleep(3)
+            browser.find_element_by_xpath("//a[@onclick=\"tag_showEdit({}, 1);\"]".format(ID)).click()
+            tag = browser.find_element_by_id("tagInfo{}".format(ID))
+            tag.clear()
+            browser.find_element_by_xpath("//input[@onclick=\"tag_add({},1)\"]".format(ID)).click()
+
+            #Need to wait a bit to interact again
+            time.sleep(0.5)
+            add_genres(browser, ID, string)
+
 def fill_empty_tags(browser, urls, anime_list):
     '''
     Loops over every anime in the list and fills

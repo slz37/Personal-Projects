@@ -14,7 +14,7 @@ LIST_URL = u"https://myanimelist.net/animelist/{}".format(MAL_PAYLOAD["user_name
 CHROMEDRIVER_PATH = "chromedriver"
 WINDOW_SIZE = "1920, 1080"
 chrome_options = Options()  
-chrome_options.add_argument("--headless")  
+#chrome_options.add_argument("--headless")  
 chrome_options.add_argument("--window-size=%s" % WINDOW_SIZE)
 
 #Initiate driver and load page
@@ -97,7 +97,6 @@ if __name__ == "__main__":
 
     #Clear tags and then add new ones
     urls, anime_list = goto_anime_list()
-    remove_tags(browser, urls, anime_list)
-    fill_empty_tags(browser, urls, anime_list)
+    update_tags(browser, urls, anime_list)
 
     browser.close()
