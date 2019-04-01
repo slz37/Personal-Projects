@@ -1,0 +1,422 @@
+/*
+-----------------------GENERAL-----------------------
+*/
+
+/*
+IMPORT FONTS
+*/
+@import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300);
+@import url(https://fonts.googleapis.com/css?family=Muli);
+@import url(https://fonts.googleapis.com/css?family=Sintony);
+@import url(https://fonts.googleapis.com/css?family=Oswald);
+@import url(https://fonts.googleapis.com/css?family=Arimo);
+
+/*
+BACKGROUND
+*/
+body {
+background-image:
+url(http://i.imgur.com/gzVBwJC.png);
+background-attachment: fixed;
+background-position: cover;
+background-repeat: no-repeat;
+}
+
+/*
+LINKS
+*/
+a, a:visited {
+text-decoration:none;
+}
+a:hover, a:visited:hover {
+color: #98ff98;
+text-decoration:underline;
+}
+
+/*
+-----------------------MENU-----------------------
+*/
+
+/* 
+LIST MENU SETUP
+*/
+#mal_cs_listinfo, #mal_cs_links, #mal_cs_otherlinks, #mal_cs_powered {
+box-sizing: border-box; 
+border: 0 none;
+height: 0 !important;
+padding: 32 -1 !important;
+position: absolute;
+width: 200px !important;
+}
+
+/* 
+BACKGROUND
+*/
+#mal_cs_listinfo a, #mal_cs_links a, #mal_cs_otherlinks a, #mal_cs_powered a {
+display: block;
+height: 15px;
+background-color: rgba(54, 74, 64,.7) !important;
+}
+
+/* 
+LINK TEXT
+*/
+#mal_cs_listinfo div a, #mal_cs_listinfo strong a strong, #mal_cs_links div a, #mal_cs_otherlinks div a, #mal_cs_listinfo a, #mal_cs_links a, #mal_cs_otherlinks a, #mal_cs_powered a{
+font-weight: normal;
+text-align: center;
+color: #594159;
+font-size:20px !important;
+padding: 5px 0 !important;
+margin: 4px 12px 0;
+text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+font-family: Arimo !important;
+letter-spacing: -0.05em;
+text-transform: lowercase;
+text-decoration: none;
+line-height: 15px;
+}
+
+/*
+POSITION MAL CS PICTURE
+*/
+#mal_cs_pic {
+position: absolute;
+right: 80px !important;
+top: 10px !important;
+}
+
+/*
+POSITION PROFILE AND LOGOUT
+*/
+#mal_cs_listinfo {
+right: 0px !important;
+top: 132px !important;
+}
+
+/*
+POSITION LIST LINKS
+*/
+#mal_cs_links {
+right: 0px !important;
+top: 0px !important;
+}
+
+/*
+POSITION OTHER LINKS
+*/
+#mal_cs_otherlinks {
+right: 0px !important;
+top: 198px !important;
+}
+
+/*
+HIDE SEARCH, VIEWING ANIME LIST OF, HISTORY, MANGA LIST
+*/
+#mal_cs_powered, #mal_cs_otherlinks div:first-of-type, #mal_cs_otherlinks div a:nth-of-type(2), #mal_cs_otherlinks div a:nth-of-type(3) {
+display: none;
+}
+
+/*
+HIDE PLAIN TEXT
+*/
+#mal_cs_otherlinks div {
+font-size: 0 !important;
+}
+
+/*
+SHOW AFFINITY TEXT
+*/
+#mal_cs_otherlinks div span{
+text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+font-family: Arimo !important;
+letter-spacing: -0.05em;
+color: #9d6262;
+position: fixed !important;
+right: 70px;
+text-transform: lowercase;
+font-size: 15px !important;
+}
+
+/*
+HIDE CONTROL STRIP BACKGROUND AND MENU SCROLL WITH SCREEN
+*/
+#mal\_control\_strip {
+position: fixed !important;
+background: none !important;
+}
+
+/*
+HOVER USER - MUST BE SEPARATE FOR SOME REASON
+*/
+#mal_cs_listinfo div:hover a strong{
+color: #98ff98;
+text-decoration:underline;
+-moz-transition: .2s linear;
+-webkit-transition: .2s linear;
+-o-transition: .2s linear;
+}
+
+/*
+HOVER REST OF MENU
+*/
+#mal_cs_listinfo div a:hover, #mal_cs_links div a:hover, #mal_cs_otherlinks div a:hover {
+color: #98ff98;
+text-decoration:underline;
+background-color: rgba(65, 89, 89, 0.9) !important;
+-moz-transition: .2s linear;
+-webkit-transition: .2s linear;
+-o-transition: .2s linear;
+}
+
+/*
+-----------------------LIST-----------------------
+*/
+
+/*
+LIST HEADER BACKGROUND COLOR
+*/
+.table_header {
+background-color: rgba(54, 74, 64,.7);
+}
+
+/*
+LIST AND BOTTOM TABLE BACKGROUND
+*/
+.category_totals, .td1, .td2, #grand_totals, #copyright {
+background-color: rgba(55,55,55,.3);
+}
+
+/*
+HEADER TEXT
+*/
+.header_title {
+height:23px;
+padding:1 5px;
+color: #364a40;
+padding-bottom: 6px;
+text-transform: uppercase;
+text-shadow:     
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+letter-spacing: -0.05em;
+font-family: Arimo;
+font-size:30px;
+}
+
+/*
+LIST TEXT
+*/
+.animetitle, .animetitle:visited, .td1, .td2, a, a:visited, .category_totals, .table_header, #grand_totals,  
+#copyright {
+color: #594159;
+font-size:20px;
+padding:2px;
+text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+font-family: Arimo;
+letter-spacing: -0.05em;
+text-transform: lowercase;
+}
+
+/*
+AIRING AND NOT AIRING
+*/
+.td1 small, .td2 small {
+color: #9d6262 ;
+}
+
+/*
+LIST COLUMN WIDTH
+*/
+.td1:nth-of-type(2), .td2:nth-of-type(2), .table_header:nth-of-type(2) {
+width: 650px;
+}
+
+/*
+LIST HOVER
+*/
+tr:hover [class^=td], .category_totals:HOVER, .td1:HOVER, .td2:HOVER, #grand_totals:HOVER, #copyright:HOVER {
+background-color: rgba(65, 89, 89, 0.9) !important;
+-moz-transition: .2s linear;
+-webkit-transition: .2s linear;
+-o-transition: .2s linear;
+}
+
+/*
+CENTER CATEGORY TOTALS, GRAND TOTALS, AND COPYRIGHT
+*/
+.category_totals, #grand_totals, #copyright {
+text-align: center;
+}
+
+/*
+-----------------------NAVIGATION-----------------------
+*/
+
+/*
+NAVIGATION LENGTH AND POSITION
+*/
+#list_surround table:first-of-type{
+position: relative;
+left: -7px;
+width: 1113px;
+}
+
+/*
+SELECTED NAVIGATION
+*/
+.status_selected {
+border-color: black;
+border-style: solid;
+border-width: 2px !important;
+background-color: rgba(89, 65, 89, .7);
+border: solid 3px #000000;
+padding:0 8px;
+text-decoration: blink;
+}
+.status_selected:hover {
+background-color: rgba(157, 98, 98, 0.9) !important;
+-moz-transition: .2s linear;
+-webkit-transition: .2s linear;
+-o-transition: .2s linear;
+}
+.status_selected a{
+color: #364a40;
+text-transform: uppercase;
+}
+
+/*
+NOT SELECTED NAVIGATION
+*/
+.status_not_selected {
+border-color: black;
+border-style: solid;
+border-width: 2px !important;
+background-color: rgba(54, 74, 64,.7);
+padding:0 8px;
+}
+.status_not_selected:hover {
+ background-color: rgba(65, 89, 89, 0.9) !important;
+-moz-transition: .2s linear;
+-webkit-transition: .2s linear;
+-o-transition: .2s linear;
+}
+.status_not_selected a{
+text-transform: lowercase;
+}
+
+/*
+-----------------------LIST/NAV SURROUNDING AREA-----------------------
+*/
+
+/*
+POSITIONING
+*/
+#list_surround {
+position: absolute !important;
+left: 10px !important;
+margin:auto;
+background-image:url();
+width: 1100px;
+background-image: url(http://i.imgur.com/VyAo4Q2.jpg);
+background-position: right top;
+background-repeat: no-repeat;
+padding-top: 277px;
+}
+
+/*
+SPACING OF NAVIGATION
+*/
+#list_surround table:first-of-type{
+border-spacing: 5px;
+}
+
+/*
+-----------------------BORDERS-----------------------
+*/
+
+/*
+LIST HORIZONTAL SEPARATING LINES
+*/
+.td1, .td2, .table_header {
+border-color: rgba(255, 255, 255, 0.3);
+border-style: solid;
+border-width: 0 0 1px !important;
+}
+
+/*
+TOP
+*/
+.table_header {
+border-color: black;
+border-style: solid;
+border-width: 3px 0 0 !important;
+}
+
+/*
+TOP SIDES
+*/
+td.table_header:first-of-type {
+border-color: black;
+border-style: solid;
+border-width: 3px 0 0 3px !important;
+}
+td.table_header:last-of-type {
+border-color: black;
+border-style: solid;
+border-width: 3px 3px 0 0 !important;
+}
+
+/*
+SIDES
+*/
+.td1:first-of-type, .td2:first-of-type {
+border-color: black;
+border-style: solid;
+border-width: 0 0 0 3px !important;
+}
+.td1:last-of-type, .td2:last-of-type {
+border-color: black;
+border-style: solid;
+border-width: 0 3px 0 0 !important;
+}
+
+/*
+BOTTOM AND BOTTOM SIDES
+*/
+.category_totals {
+border-color: black;
+border-style: solid;
+border-width: 0 3px 3px !important;
+}
+
+/*
+BOTTOM TABLES
+*/
+#grand_totals, #copyright {
+border-color: black;
+border-style: solid;
+border-width: 3px !important;
+}
+
+/*
+MENU
+*/
+#mal_cs_listinfo a, #mal_cs_links a, #mal_cs_otherlinks a, #mal_cs_powered a {
+border-color: black;
+border-style: solid;
+border-width: 2px !important;
+}
