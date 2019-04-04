@@ -4,5 +4,6 @@ from selenium.webdriver.common.keys import Keys
 
 import re, sys, time
 
-from tag_methods import *
-
+from anime import *
+from tag import *
+from rank import *
