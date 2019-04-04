@@ -78,7 +78,7 @@ def login():
 def goto_anime_list(tab = ""):
     '''
     Moves to anime list and gathers the urls and
-    names of all animes in list. If list default
+    names of all anime in list. If list default
     is not all anime, this will only grab the
     ones from the current tab.
     '''
@@ -98,25 +98,41 @@ def goto_anime_list(tab = ""):
 
 if __name__ == "__main__":
     login()
-    funct = "tag"
+    funct = "rank"
 
     if funct == "tag":
         #Clear tags and then add new ones
         urls, anime_list = goto_anime_list()
 
         for i in range(0, len(anime_list)):
+            #Remove tags
             #remove_tag(browser, urls[i], anime_list[i])
+
+            #Fill any empty slots
             #fill_empty_tag(browser, urls[i], anime_list[i])
 
-            #Or replace tags
+            #Or replace all tags
             #replace_tag(browser, urls[i], anime_list[i])
 
             #Or update tags
-            update_tag(browser, urls[i], anime_list[i])
-            sys.exit()
+            #update_tag(browser, urls[i], anime_list[i])
     elif funct == "rank":
         #Get anime in each tab
         animes = []
+
+        tab = "Completed"
+
+        #Load list
+        urls, anime_list = goto_anime_list(tab)
+
+        #Get anime info
+        name = anime_list[0].text
+        url = urls[0].get_attribute("href")
+        ID = re.search(ID_PATTERN, url).group()
+
+        #Instantiate class
+        animes.append(anime(browser, name, url, ID, tab))
+        
         tab = "Plan to Watch"
             
         #Load list
@@ -140,7 +156,7 @@ if __name__ == "__main__":
 
         #Replace related anime with objects
         for anime in animes:
-            anime.replace_related_animes(animes)
+            anime.replace_related_anime(animes)
 
         #Get rankings
         rank(animes)

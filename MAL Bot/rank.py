@@ -10,10 +10,11 @@ def rank(animes):
 
     '''
     Things to include when ranking:
+    -Average rating of genres
     -Rating of related anime if on list
     -Number of related anime on list
     -Status of related anime(completed, dropped, etc.)
-    -Average rating of genres
+    
     -For a specific anime, if a recommendation is in the user's list, weight by
      number of users recommending
     '''
@@ -22,21 +23,51 @@ def rank(animes):
     genres, avgs, nums = setup_genres()
     genre_avgs = genre_avg(animes, genres, avgs, nums)
 
-    #Now sort by final rankings and output
-    rankings = sorted(animes, key = lambda x: x.ranking, reverse = True)
-
-    for anime in rankings:
-        print("{} {}".format(anime.ranking, anime.name))
+    #Update and output results
+    test = update_rankings(animes, genre_avgs)
+    for anime in test:
+        if anime.status == "Plan to Watch":
+            print("{} {}".format(round(anime.ranking, 2), anime.name))
+    sys.exit()
 
     return rankings
 
-def update_rankings(animes, metric):
+def update_rankings(animes, genre_avg):
     '''
     Takes in the current rankings and
     a metric by which to weight them
     and updates the rankings based
     on that metric.
     '''
+
+    #Not sure how to weight these yet
+    status = {
+        "Currently Watching": 6,
+        "Completed": 10,
+        "On Hold": 4,
+        "Dropped": 1,
+        "Plan to Watch": 5,
+        } 
+
+    for anime in animes:
+        if anime.status == "Plan to Watch":
+            #Genres
+            for genre in anime.genres:
+                anime.ranking += genre_avg[genre]
+
+            anime.ranking /= len(anime.genres) #normalize
+
+            #Related anime
+            for related_anime in anime.related_anime:
+                if related_anime in animes:
+                    #Factor in rating of related anime
+                    if related_anime.user_rating != "-":
+                        anime.ranking += (int(related_anime.user_rating) * status[related_anime.status]) / 100
+                    else:
+                        anime.ranking += (5 * status[related_anime.status]) / 100 #no ranking -> neutral
+
+    #Now sort by final rankings
+    rankings = sorted(animes, key = lambda x: x.ranking, reverse = True)
 
     return rankings
 
@@ -78,10 +109,3 @@ def genre_avg(animes, genres, avgs, nums):
     genre_avgs = dict(zip(genres, avgs))
     
     return genre_avgs
-        
-
-def num_related_anime(animes):
-    '''
-    Calculates the number of related anime
-    on the user's list.
-    '''

@@ -15,7 +15,6 @@ class anime():
         self.browser = browser
         self.status = tab
         self.user_rating = self.browser.find_element_by_id("scoreval{}".format(self.ID)).text
-        self.progress = self.browser.find_element_by_id("output{}".format(self.ID)).text
 
         #Load anime page
         self.load_page()
@@ -25,6 +24,7 @@ class anime():
         self.genres = []
 
         #Properties from anime page
+        self.progress = browser.find_element_by_id("myinfo_watchedeps").get_attribute("value")
         self.related_anime = self.get_related_anime()        
         self.genres = self.get_genres()
         
@@ -84,7 +84,7 @@ class anime():
 
         #Remove descriptors
         for descriptor in related_anime_full:
-            name = descriptor.split(": ")[1]
+            name = descriptor.split(": ", 1)[1]
             related_anime.append(name)
 
         return related_anime
@@ -119,7 +119,7 @@ class anime():
 
         return minutes * int(self.num_episodes)
 
-    def replace_related_animes(self, animes):
+    def replace_related_anime(self, animes):
         '''
         Replaces the names of related anime with the
         anime class object.
