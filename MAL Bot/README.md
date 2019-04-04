@@ -1,1 +1,3 @@
-Updates user tags for anime in user's list on myanimelist.net Currently supports adding tags to all empty rows, removing all tags, filtering gennres for tags. User must supply username and password as input.
+Bot for myanimelist.net that automates some useful functions and ranks the anime on a user's PTW list. Currently supports adding tags an empty row, removing tags, updating tags without replacing, and replacing tags. PTW rankings are still under development. 
+
+User must supply username and password as input.
