@@ -8,6 +8,7 @@ import sys
 from solver import *
 from tkinter import filedialog
 import pathlib
+from random import randint
 
 def generate_subgrid(subframe, number_grid):
     '''
@@ -31,7 +32,7 @@ def generate_grid():
 
     #Master frame for grid
     frame = tkinter.Frame(WINDOW)
-    frame.pack(side = "top")
+    frame.grid(row = 1, column = 1)
 
     #Grid of text boxes
     for i in range(0, 5):
@@ -62,7 +63,7 @@ def generate_info():
 
     #Frame
     frame = tkinter.Frame(WINDOW)
-    frame.pack(side = "bottom")
+    frame.grid(row = 2, column = 1)
 
     #Instructions
     tkinter.Label(frame, text =
@@ -70,7 +71,7 @@ def generate_info():
 
     #Solve Button
     solve_button = tkinter.Button(frame, text = 'Solve', width =
-                            20, command = lambda: solution(number_grid))
+                            20, command = lambda: setup_solver(number_grid))
     solve_button.grid(row = 5, column = 3)
 
     #Load/Save Button
@@ -80,6 +81,16 @@ def generate_info():
     load_button = tkinter.Button(frame, text = 'Load', width =
                             20, command = lambda: load_puzzle(number_grid))
     load_button.grid(row = 5, column = 2)
+
+    #Clear/Random Fill Buttons
+    frame2 = tkinter.Frame(WINDOW)
+    frame2.grid(row = 3, column = 1)
+    clear_button = tkinter.Button(frame2, text = 'Clear Grid', width =
+                            20, command = lambda: clear_grid(number_grid))
+    clear_button.grid(row = 1, column = 1)
+    fill_random_button = tkinter.Button(frame2, text = 'Randomize', width =
+                            20, command = lambda: fill_grid_random(number_grid))
+    fill_random_button.grid(row = 1, column = 2)
 
 def save_puzzle(number_grid):
     '''
@@ -162,6 +173,45 @@ def update_grid(rows, text):
             tile.delete("1.0", tkinter.END)
             tile.insert(tkinter.END, new_val)
 
+def clear_grid(number_grid):
+    '''
+    Removes all values from the grid.
+    '''
+
+    #Remove values
+    for tile in number_grid:
+        tile.delete("1.0", tkinter.END)
+
+    return number_grid
+
+def fill_grid_random(number_grid):
+    '''
+    Fills the grid with random values
+    between 0 and 9, where 0 is an empty
+    tile.
+    '''
+
+    #Add random int
+    for tile in number_grid:
+        new_val = str(randint(0, 9))
+
+        #Replace 0 with empty
+        if new_val == "0":
+            new_val = ""
+        
+        tile.delete("1.0", tkinter.END)
+        tile.insert(tkinter.END, new_val)
+
+        #Don't want randomize to return invalid grid
+        if check_rules(number_grid):
+            continue
+        else:
+            tile.delete("1.0", tkinter.END)
+
+    #Try again if not enough numbers
+    if not check_solvable(number_grid):
+        fill_grid_random(number_grid)
+
 def on_closing():
     '''
     Closes the tkinter window
@@ -175,7 +225,7 @@ if __name__ == "__main__":
     #Initiate Setup
     WINDOW = tkinter.Tk()
     WIDTH = 500  
-    HEIGHT = 400  
+    HEIGHT = 410  
     X = 100
     Y = 100
 
